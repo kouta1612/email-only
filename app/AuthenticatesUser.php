@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use App\LoginToken;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -22,6 +23,12 @@ class AuthenticatesUser
         $this->validateRequest()
             ->createToken()
             ->send();
+    }
+
+    public function login(LoginToken $token)
+    {
+        Auth::login($token->user);
+        $token->delete();
     }
 
     protected function validateRequest()
