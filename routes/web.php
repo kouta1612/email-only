@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', 'Auth\AuthController@login');
+Route::post('/login', 'Auth\AuthController@postLogin');
+Route::get('/auth/token/{token}', 'Auth\AuthController@authenticate');
